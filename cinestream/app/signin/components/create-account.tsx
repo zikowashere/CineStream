@@ -12,8 +12,21 @@ import {
 } from "@/registry/new-york/ui/card";
 import { Input } from "@/registry/new-york/ui/input";
 import { Label } from "@/registry/new-york/ui/label";
+import { signIn } from "next-auth/react";
+import { Suspense } from "react";
 
 export function DemoCreateAccount() {
+  const callbackUrl = "http://localhost:3000/";
+
+  const handleSignIn = async () => {
+    const result = await signIn("google", {
+      callbackUrl: callbackUrl,
+    });
+
+    if (!result) {
+      console.error("Erreur to signIn");
+    }
+  };
   return (
     <Card className="bg-black justify-center items-center">
       <CardHeader className="space-y-1">
@@ -26,11 +39,15 @@ export function DemoCreateAccount() {
       </CardHeader>
       <CardContent className="grid gap-4">
         <div className="grid grid-cols-2 gap-6">
-          <Button variant="ghost" className="bg-green-300 hover:bg-lime-400 ">
+          <Button variant="ghost" className=" bg-lime-400  hover:bg-green-300 ">
             <Icons.twitter className="mr-2 h-4 w-4" />
             Twitter
           </Button>
-          <Button variant="ghost" className="bg-green-300 hover:bg-lime-400">
+          <Button
+            onClick={handleSignIn}
+            variant="ghost"
+            className="bg-lime-400  hover:bg-green-300"
+          >
             <Icons.google className="mr-2 h-4 w-4 " />
             Google
           </Button>
@@ -55,7 +72,9 @@ export function DemoCreateAccount() {
         </div>
       </CardContent>
       <CardFooter>
-        <Button className="w-full bg-green-300">Create account</Button>
+        <Button className="w-full bg-lime-400  hover:bg-green-300">
+          Login
+        </Button>
       </CardFooter>
     </Card>
   );

@@ -1,11 +1,15 @@
+"use client";
 import cover from "@/public/netflix.jpeg";
+import { useSession } from "next-auth/react";
 import Image from "next/image";
 import Navbar from "./components/navbar/navbar";
+import Provider from "./components/providers/provider";
 
 export default function Home() {
+  const session = useSession();
+  console.log("data", session);
   return (
     <main className="flex h-screen flex-col relative ">
-      <Navbar />
       <div className="relative overflow-hidden">
         <Image
           src={cover}
@@ -21,7 +25,7 @@ export default function Home() {
           welcome to cineStream to watch your favourite movie
         </p>
         <p className="absolute m-6 text-white font-light xs:text-xs sm:text-xl md:text-2xl  lg:text-3xl xl:text-4xl  inset-0 flex items-center justify-center text-center">
-          Prêt à regarder CineStreal ? Saisissez votre adresse e-mail pour vous
+          Prêt à regarder CineSt ? Saisissez votre adresse e-mail pour vous
           abonner ou réactiver votre abonnement.
         </p>
       </div>
