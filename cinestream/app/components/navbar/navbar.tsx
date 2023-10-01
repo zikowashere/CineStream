@@ -2,7 +2,7 @@
 import React from "react";
 import logo from "@/public/logo_transparent.png";
 import Image from "next/image";
-import SigninAction from "../signinaction/signinaction";
+import SignInAction from "../signinaction/signinaction";
 import { useSession } from "next-auth/react";
 import { SignOut } from "@/app/signout/signout";
 
@@ -10,9 +10,9 @@ const Navbar = () => {
   const { data: session } = useSession();
 
   return (
-    <div className="flex justify-between ">
-      <div>
-        <Image className="m-3 w-24" src={logo} alt="logo" />
+    <div className="fixed top-0 left-0 right-0 z-50 bg-black p-4 flex justify-between">
+      <div className="flex w-28">
+        <Image className="  m-3 object-contain" src={logo} alt="logo" />
       </div>
       <div className=" flex m-14 ">
         {session?.user ? (
@@ -20,7 +20,7 @@ const Navbar = () => {
             <SignOut name={session.user.name} />
           </div>
         ) : (
-          <SigninAction name="Login" link="/signin" />
+          <SignInAction name="Login" link="/signin" />
         )}
       </div>
     </div>

@@ -20,7 +20,7 @@ export default function RootLayout({
   return (
     <Provider>
       <html lang="en">
-        <body className="bg-black overflow-hidden">
+        <body className="bg-black h-full ">
           <Navbar />
           <ThemeProvider
             attribute="class"
