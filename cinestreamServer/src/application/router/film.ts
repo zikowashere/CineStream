@@ -14,5 +14,13 @@ routerFilm.get("/", async (req: Request, res: Response) => {
     return res.status(500).json(error);
   }
 });
+routerFilm.get("/language/:language", async (req: Request, res: Response) => {
+  try {
+    const films = await filmController.getFilmByLanguage(req.params.language);
+    return res.status(200).json(films);
+  } catch (error) {
+    return res.status(500).json(error);
+  }
+});
 
 export default routerFilm;

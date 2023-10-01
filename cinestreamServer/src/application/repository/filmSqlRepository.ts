@@ -16,7 +16,13 @@ export default class FilmSqlRepository implements filmRepository {
       throw new Error("films doesn't exits.");
     }
   }
-  getFilmsByLanguage(language: string): Promise<film[] | null> {
-    throw new Error("Method not implemented.");
+  async getFilmsByLanguage(language: string) {
+    try {
+      const films = await prisma.film.findMany({
+        where: { langage: language },
+      });
+      if (films) return films;
+      else return null;
+    } catch (error) {}
   }
 }
