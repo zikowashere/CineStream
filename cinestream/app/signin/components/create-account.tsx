@@ -1,6 +1,6 @@
 "use client";
 
-import { Icons } from "@/components/Icons";
+import { Icons } from "@/components/icons";
 import { Button } from "@/registry/new-york/ui/button";
 import {
   Card,
@@ -13,10 +13,9 @@ import {
 import { Input } from "@/registry/new-york/ui/input";
 import { Label } from "@/registry/new-york/ui/label";
 import { signIn } from "next-auth/react";
-import { Suspense } from "react";
 
 export function DemoCreateAccount() {
-  const callbackUrl = "http://localhost:3000/";
+  const callbackUrl = process.env.NEXT_PUBLIC_BASE_URL + "/films";
 
   const handleSignIn = async () => {
     const result = await signIn("google", {
@@ -24,7 +23,7 @@ export function DemoCreateAccount() {
     });
 
     if (!result) {
-      console.error("Erreur to signIn");
+      console.error("Error to signIn");
     }
   };
   return (

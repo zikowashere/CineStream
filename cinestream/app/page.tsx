@@ -10,7 +10,7 @@ export default function Home() {
   console.log("data", session);
   return (
     <main className="flex h-screen flex-col relative ">
-      <div className="relative overflow-hidden">
+      <div className="relative ">
         <Image
           src={cover}
           alt="cover home page"
