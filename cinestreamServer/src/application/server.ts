@@ -8,5 +8,5 @@ server.use(cors());
 server.use("/api/films", routerFilm);
 
 server.listen(port, () => {
-  console.log(`server is runing on port ${port}`);
+  console.log(`server is running on port ${port}`);
 });
