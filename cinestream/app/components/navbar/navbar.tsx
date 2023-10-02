@@ -10,7 +10,7 @@ const Navbar = () => {
   const { data: session } = useSession();
 
   return (
-    <div className="fixed top-0 left-0 right-0 z-50 bg-black p-4 flex justify-between">
+    <div className=" top-0 left-0 right-0 z-50 bg-black p-4 flex justify-between">
       <div className="flex w-28">
         <Image className="  m-3 object-contain" src={logo} alt="logo" />
       </div>

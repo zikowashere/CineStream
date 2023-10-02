@@ -1,5 +1,5 @@
 import { film } from "@/app/type/film";
-import { Card } from "@/registry/new-york/ui/card";
+import { Card } from "@/components/ui/card";
 import { Rating } from "@mui/material";
 import React from "react";
 

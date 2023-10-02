@@ -8,5 +8,7 @@ export async function GET(
   const films = await axios.get(
     process.env.SERVER_URL + `/api/films/language/${params.language}`
   );
-  return NextResponse.json(films.data);
+  return NextResponse.json(films.data, {
+    headers: { "Cache-Control": "max-age=360" },
+  });
 }
