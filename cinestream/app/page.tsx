@@ -2,15 +2,22 @@
 import cover from "@/public/netflix.jpeg";
 import { useSession } from "next-auth/react";
 import Image from "next/image";
+import { useRouter } from "next/navigation";
+import { useEffect } from "react";
 import Navbar from "./components/navbar/navbar";
 import Provider from "./components/providers/provider";
 
 export default function Home() {
   const session = useSession();
-  console.log("data", session);
+  const router = useRouter();
+
+  useEffect(() => {
+    if (session) router.push("/films");
+  }, []);
+
   return (
     <main className="flex h-screen flex-col relative ">
-      <div className="relative ">
+      <div className="relative overflow-hidden">
         <Image
           src={cover}
           alt="cover home page"

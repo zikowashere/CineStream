@@ -17,14 +17,18 @@ function FilmsPage() {
     fetchFilms.then((films) => setFilms(films));
   }, []);
   return (
-    <div className="flex flex-col items-center overflow-x-auto m-40">
-      <div className="flex w-full  ">
-        <div className="flex w-full max-w-sm m-5 ">
+    <div className="flex flex-col  items-center overflow-x-auto ">
+      <div className="flex w-1/2 justify-center  space-x-10 ">
+        <div className="flex w-1/3 ">
           {" "}
           <FilterLanguage />
         </div>
-        <div className="flex w-full max-w-sm m-5 space-x-2">
-          <Input type="text" placeholder="Search for your favorite movies" />
+        <div className="flex  w-1/2  space-x-2">
+          <Input
+            className="text-white"
+            type="text"
+            placeholder="Search for your favorite movies"
+          />
           <Button
             className="bg-teal-100 hover:bg-lime-400 text-black "
             type="submit"
@@ -35,13 +39,6 @@ function FilmsPage() {
       </div>
       <div className="w-full">
         <MoviesDisplay films={films} />
-      </div>
-
-      <div className="flex justify-center w-full">
-        <Pagination
-          className="bg-teal-100 m-10 rounded-2xl absolute bottom-0"
-          count={10}
-        />
       </div>
     </div>
   );
