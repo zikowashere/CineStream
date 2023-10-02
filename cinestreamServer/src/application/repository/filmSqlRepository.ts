@@ -3,8 +3,13 @@ import { filmRepository } from "../../films/ports/filmRepository";
 import prisma from "../prisma/client";
 
 export default class FilmSqlRepository implements filmRepository {
-  getFilmsByGenre(genre: string): Promise<film[] | null> {
-    throw new Error("Method not implemented.");
+  async getFilmsByGenre(genre: string): Promise<film[] | null> {
+    try {
+      const films = await prisma.film.findMany({ where: { genre: genre } });
+      return films;
+    } catch (error) {
+      throw new Error("films doesn't exists.");
+    }
   }
   getFilmByTitle(title: string): Promise<film | null> {
     throw new Error("Method not implemented.");
