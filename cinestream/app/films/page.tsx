@@ -5,6 +5,7 @@ import { Pagination } from "@mui/material";
 import { useEffect, useState } from "react";
 import { useFetchFilms } from "../hooks/useFetchFilms";
 import { film } from "../type/film";
+import FilterGenre from "./components/filterGenre";
 import FilterLanguage from "./components/filterLanguage";
 import MoviesDisplay from "./components/moviesDisplay";
 
@@ -16,12 +17,17 @@ function FilmsPage() {
   useEffect(() => {
     fetchFilms.then((films) => setFilms(films));
   }, []);
+
   return (
     <div className="flex flex-col  items-center overflow-x-auto ">
       <div className="flex w-1/2 justify-center  space-x-10 ">
         <div className="flex w-1/3 ">
           {" "}
           <FilterLanguage />
+        </div>
+        <div className="flex w-1/3 ">
+          {" "}
+          <FilterGenre />
         </div>
         <div className="flex  w-1/2  space-x-2">
           <Input

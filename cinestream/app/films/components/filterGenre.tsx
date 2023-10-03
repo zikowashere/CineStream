@@ -1,9 +1,8 @@
 "use client";
 
-import React, { useState } from "react";
 import { Check, ChevronsUpDown } from "lucide-react";
+import { useState } from "react";
 
-import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
 import {
   Command,
@@ -17,39 +16,39 @@ import {
   PopoverContent,
   PopoverTrigger,
 } from "@/components/ui/popover";
-import { useFetchFilmsByLanguage } from "@/app/hooks/useFetchFilmsByLanguage";
+import { cn } from "@/lib/utils";
 import { useRouter } from "next/navigation";
 
-const language = [
+const genre = [
   {
-    value: "French",
-    label: "French",
+    value: "Comedy",
+    label: "Comedy",
   },
   {
-    value: "English",
-    label: "English",
+    value: "Comedy horror",
+    label: "Comedy Horror",
   },
   {
-    value: "Turkish",
-    label: "Turkish",
+    value: "Comedy mystery",
+    label: "Comedy Mystery",
   },
   {
-    value: "German",
-    label: "German",
+    value: "Concert film",
+    label: "Concert Film",
   },
   {
-    value: "Hindi",
-    label: "Hindi",
+    value: "Animation",
+    label: "Animation",
   },
 ];
 
-const FilterLanguage = () => {
+const FilterGenre = () => {
   const [open, setOpen] = useState(false);
   const [value, setValue] = useState("");
   const router = useRouter();
 
-  const getFilmsByLanguage = async (language: string) => {
-    router.push(`/films/language/${language}`);
+  const getFilmsByGenre = async (genre: string) => {
+    router.push(`/films/genre/${genre}`);
   };
 
   return (
@@ -62,32 +61,32 @@ const FilterLanguage = () => {
           className="w-[300px] justify-between bg-teal-100 "
         >
           {value
-            ? language.find((language) => language.value === value)?.label
-            : "Select Movie Language..."}
+            ? genre.find((genre) => genre.value === value)?.label
+            : "Select Movie Genre..."}
           <ChevronsUpDown className="ml-2 h-4 w-4 shrink-0 opacity-50" />
         </Button>
       </PopoverTrigger>
       <PopoverContent className="w-[200px] p-0">
         <Command>
-          <CommandInput placeholder="Search language..." />
+          <CommandInput placeholder="Search genre..." />
           <CommandEmpty>No language found.</CommandEmpty>
           <CommandGroup>
-            {language.map((language) => (
+            {genre.map((genre) => (
               <CommandItem
-                key={language.value}
+                key={genre.value}
                 onSelect={(currentValue) => {
                   setValue(currentValue === value ? "" : currentValue);
                   setOpen(false);
-                  getFilmsByLanguage(currentValue);
+                  getFilmsByGenre(currentValue);
                 }}
               >
                 <Check
                   className={cn(
                     "mr-2 h-4 w-4",
-                    value === language.value ? "opacity-100" : "opacity-0"
+                    value === genre.value ? "opacity-100" : "opacity-0"
                   )}
                 />
-                {language.label}
+                {genre.label}
               </CommandItem>
             ))}
           </CommandGroup>
@@ -96,4 +95,4 @@ const FilterLanguage = () => {
     </Popover>
   );
 };
-export default FilterLanguage;
+export default FilterGenre;
