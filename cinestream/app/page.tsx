@@ -4,16 +4,16 @@ import { useSession } from "next-auth/react";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
 import { useEffect } from "react";
-import Navbar from "./components/navbar/navbar";
-import Provider from "./components/providers/provider";
 
 export default function Home() {
   const session = useSession();
   const router = useRouter();
 
   useEffect(() => {
-    if (session) router.push("/films");
-  }, []);
+    if (session.status === "authenticated") {
+      router.push("/films");
+    }
+  }, [session]);
 
   return (
     <main className="flex h-screen flex-col relative ">

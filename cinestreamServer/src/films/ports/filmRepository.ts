@@ -5,4 +5,5 @@ export interface filmRepository {
   getFilmByTitle(title: string): Promise<film | null>;
   getFilms(): Promise<film[] | null>;
   getFilmsByLanguage(language: string): Promise<film[] | undefined | null>;
+  addInformation(): void;
 }

@@ -11,7 +11,7 @@ import MoviesDisplay from "../../components/moviesDisplay";
 interface Props {
   params: { genre: string };
 }
-const page = ({ params }: Props) => {
+const GenrePage = ({ params }: Props) => {
   const filmPerPage = 9;
   const [filmsByGenre, setFilmsByGenre] = useState<film[] | undefined>([]);
   const [indexPage, setIndexPage] = useState(1);
@@ -79,4 +79,4 @@ const page = ({ params }: Props) => {
   );
 };
 
-export default page;
+export default GenrePage;

@@ -1,5 +1,7 @@
+import { useCallback } from "react";
+
 export const useFetchFilmsByLanguage = (language: string) => {
-  const fetchFilmsByLanguage = async () => {
+  const fetchFilmsByLanguage = useCallback(async () => {
     try {
       const films = await fetch(
         process.env.NEXT_PUBLIC_BASE_URL + `/api/films/language/${language}`
@@ -8,6 +10,6 @@ export const useFetchFilmsByLanguage = (language: string) => {
     } catch (error) {
       throw error;
     }
-  };
+  }, []);
   return { fetchFilmsByLanguage };
 };

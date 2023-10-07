@@ -1,4 +1,5 @@
 import { filmRepository } from "../../films/ports/filmRepository";
+import { addInformation } from "../../films/useCases/addInformations";
 import { getFilmsByLanguage } from "../../films/useCases/getFilmByLanguage";
 import { getFilmByTitle } from "../../films/useCases/getFilmByTitle";
 import { getFilms } from "../../films/useCases/getFilms";
@@ -29,5 +30,9 @@ export default class FilmController {
   async getFilms() {
     const films = new getFilms(this.filmRepository);
     return await films.getFilms();
+  }
+  async addInformation() {
+    const films = new addInformation(this.filmRepository);
+    return await films.addInformation();
   }
 }

@@ -58,7 +58,7 @@ const FilterGenre = () => {
           variant="outline"
           role="combobox"
           aria-expanded={open}
-          className="w-[300px] justify-between bg-teal-100 "
+          className="w-[300px] justify-between bg-teal-100 hover:bg-lime-400 "
         >
           {value
             ? genre.find((genre) => genre.value === value)?.label
@@ -69,7 +69,7 @@ const FilterGenre = () => {
       <PopoverContent className="w-[200px] p-0">
         <Command>
           <CommandInput placeholder="Search genre..." />
-          <CommandEmpty>No language found.</CommandEmpty>
+          <CommandEmpty>No genre found.</CommandEmpty>
           <CommandGroup>
             {genre.map((genre) => (
               <CommandItem

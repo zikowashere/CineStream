@@ -18,7 +18,7 @@ export function SignOut({ name }: Props) {
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
-        <div className="w-full">
+        <div className="w-full flex justify-end">
           <Button
             variant="outline"
             className=" bg-teal-100 rounded-3xl  hover:bg-lime-400 text-black"

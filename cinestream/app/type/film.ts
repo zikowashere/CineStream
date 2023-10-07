@@ -5,5 +5,8 @@ export interface film {
   premiere: string;
   runtime: number;
   imdbScore: number;
+  posterCard: string;
+  poster: string;
+  description: string;
   langage: string;
 }
