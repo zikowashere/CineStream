@@ -32,8 +32,8 @@ export default function Home() {
           welcome to cineStream to watch your favourite movie
         </p>
         <p className="absolute m-6 text-white font-light xs:text-xs sm:text-xl md:text-2xl  lg:text-3xl xl:text-4xl  inset-0 flex items-center justify-center text-center">
-          Prêt à regarder CineSt ? Saisissez votre adresse e-mail pour vous
-          abonner ou réactiver votre abonnement.
+          Ready to watch CineStream? Enter your e-mail address to subscribe or
+          reactivate your subscription.
         </p>
       </div>
     </main>
