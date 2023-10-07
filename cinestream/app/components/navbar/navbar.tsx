@@ -6,9 +6,18 @@ import SignInAction from "../signinaction/signinaction";
 import { useSession } from "next-auth/react";
 import { SignOut } from "@/app/signout/signout";
 import { Button } from "@/registry/new-york/ui/button";
+import { useRouter } from "next/navigation";
 
 const Navbar = () => {
   const { data: session } = useSession();
+  const router = useRouter();
+
+  const home = () => {
+    router.push("/films");
+  };
+  const films = () => {
+    router.push("/films/filmsfiltred");
+  };
 
   return (
     <div className=" top-0 left-0 right-0 z-50 bg-black p-4 flex justify-between items-center">
@@ -17,13 +26,19 @@ const Navbar = () => {
       </div>
       {session?.user && (
         <>
-          <Button className="text-white font-thin ml-1 bg-transparent">
+          <Button
+            className="text-white font-thin ml-1 bg-transparent hover:bg-transparent"
+            onClick={home}
+          >
             Home
           </Button>
-          <Button className="text-white font-thin ml-1 bg-transparent">
+          <Button
+            className="text-white font-thin ml-1 bg-transparent hover:bg-transparent"
+            onClick={films}
+          >
             Films
           </Button>
-          <Button className="text-white font-thin ml-1 bg-transparent">
+          <Button className="text-white font-thin ml-1 bg-transparent hover:bg-transparent">
             New & Popular
           </Button>
         </>
