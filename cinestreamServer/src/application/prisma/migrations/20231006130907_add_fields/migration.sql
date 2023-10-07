@@ -1,0 +1,4 @@
+-- AlterTable
+ALTER TABLE `film` ADD COLUMN `description` VARCHAR(191) NOT NULL DEFAULT '',
+    ADD COLUMN `poster` VARCHAR(191) NOT NULL DEFAULT '',
+    ADD COLUMN `posterCard` VARCHAR(191) NOT NULL DEFAULT '';

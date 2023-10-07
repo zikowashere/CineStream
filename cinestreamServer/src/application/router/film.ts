@@ -31,4 +31,22 @@ routerFilm.get("/genre/:genre", async (req: Request, res: Response) => {
   }
 });
 
+routerFilm.get("/:title", async (req: Request, res: Response) => {
+  try {
+    const film = await filmController.getFilmByTitle(req.params.title);
+    return res.status(200).json(film);
+  } catch (error) {
+    return res.status(500).json(error);
+  }
+});
+
+routerFilm.post("/", async (req: Request, res: Response) => {
+  try {
+    const films = await filmController.addInformation();
+    res.status(200).json(films);
+  } catch (error) {
+    return res.status(500).json(error);
+  }
+});
+
 export default routerFilm;

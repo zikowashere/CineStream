@@ -1,8 +1,35 @@
+import axios from "axios";
 import { film } from "../../films/film/film";
 import { filmRepository } from "../../films/ports/filmRepository";
 import prisma from "../prisma/client";
 
 export default class FilmSqlRepository implements filmRepository {
+  async addInformation() {
+    try {
+      const films: film[] = await prisma.film.findMany();
+      let information;
+      for (const film of films) {
+        information = await axios.get(
+          process.env.TMDB_BASE_URL +
+            `query=${film.title}&api_key=` +
+            process.env.TMDB_CLIENT
+        );
+        console.log("information", information.data.results[0]);
+        const res = information.data.results[0];
+
+        await prisma.film.update({
+          where: { id: film.id },
+          data: {
+            poster: res.poster_path,
+            posterCard: res.backdrop_path,
+          },
+        });
+      }
+    } catch (error) {
+      console.log("error", error);
+      throw new Error("films doesn't exists.");
+    }
+  }
   async getFilmsByGenre(genre: string): Promise<film[] | null> {
     try {
       const films = await prisma.film.findMany({ where: { genre: genre } });
@@ -11,8 +38,16 @@ export default class FilmSqlRepository implements filmRepository {
       throw new Error("films doesn't exists.");
     }
   }
-  getFilmByTitle(title: string): Promise<film | null> {
-    throw new Error("Method not implemented.");
+  async getFilmByTitle(title: string) {
+    try {
+      const film = await prisma.film.findFirstOrThrow({
+        where: { title: title },
+      });
+      if (film) return film;
+      else return null;
+    } catch (error) {
+      throw new Error("films doesn't exists.");
+    }
   }
   async getFilms() {
     try {

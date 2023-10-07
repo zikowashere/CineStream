@@ -10,7 +10,7 @@ import MoviesDisplay from "../../components/moviesDisplay";
 interface Props {
   params: { language: string };
 }
-const page = ({ params }: Props) => {
+const LanguagePage = ({ params }: Props) => {
   const filmPerPage = 9;
   const [filmsByLanguage, setFilmsByLanguage] = useState<film[] | undefined>(
     []
@@ -80,4 +80,4 @@ const page = ({ params }: Props) => {
   );
 };
 
-export default page;
+export default LanguagePage;

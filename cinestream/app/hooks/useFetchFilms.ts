@@ -1,12 +1,12 @@
-import { useMemo } from "react";
+import { useCallback } from "react";
 
 export const useFetchFilms = () => {
-  const fetchFilms = useMemo(async () => {
+  const fetchFilms = useCallback(async () => {
     try {
-      const response = await fetch("/api/films");
-      return response.json();
+      const films = await fetch("/api/films");
+      return films.json();
     } catch (error) {
-      console.error("Error cannot get films :", error);
+      throw error;
     }
   }, []);
 

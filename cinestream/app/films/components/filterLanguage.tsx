@@ -59,7 +59,7 @@ const FilterLanguage = () => {
           variant="outline"
           role="combobox"
           aria-expanded={open}
-          className="w-[300px] justify-between bg-teal-100 "
+          className="w-[300px] justify-between bg-teal-100 hover:bg-lime-400 "
         >
           {value
             ? language.find((language) => language.value === value)?.label
