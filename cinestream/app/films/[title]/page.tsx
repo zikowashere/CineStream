@@ -1,16 +1,17 @@
 "use client";
 
 import { useFetchFilmByTitle } from "@/app/hooks/useFetchFilmByTitle";
+import { useGetInformationFilm } from "@/app/hooks/useGetInformationsFilm";
 import { film } from "@/app/type/film";
 import { Button } from "@/registry/new-york/ui/button";
 import PlayArrowIcon from "@mui/icons-material/PlayArrow";
 import { Popover, Rating } from "@mui/material";
 import { useEffect, useState } from "react";
 import YouTube from "react-youtube";
-import { useGetInformationFilm } from "@/app/hooks/useGetInformationsFilm";
+import ExceptionFilm from "@/app/components/exceptions/exception";
 // @ts-ignore
 import movieTrailer from "movie-trailer";
-import Poster from "../components/poster";
+import FilmExist from "../components/filmExist";
 
 interface Props {
   params: { title: string };
@@ -38,8 +39,11 @@ const TitlePage = ({ params }: Props) => {
     let filmByTitle;
     const information = getInformationFilm(params.title);
 
-    if (params.title) filmByTitle = await fetchFilmByTitle();
-    if (filmByTitle) {
+    if (params.title) {
+      filmByTitle = await fetchFilmByTitle();
+      console.log("film", filmByTitle);
+    }
+    if (filmByTitle !== undefined) {
       setFilm(filmByTitle);
       information.then((information) => {
         setPosterFilm(information.results[0].backdrop_path);
@@ -107,48 +111,11 @@ const TitlePage = ({ params }: Props) => {
           </Popover>
         </div>
       ) : (
-        <div className="relative w-full h-[70vh]  bg-gradient-to-r from-gray-800 to-gray-100">
-          <div className="flex  h-full w-full ">
-            <img
-              src={`https://image.tmdb.org/t/p/original/${film?.posterCard}`}
-              className="flex w-full object-fill"
-            />
-            <div className=" absolute inset-0 bg-opacity-20 bg-black">
-              <div className="flex top-8">
-                <p className="  font-bold text-sm  text-white ml-10 mt-4 font-serif  ">
-                  {" "}
-                  CineStream
-                </p>
-                <p className="bg-transparent font-thin text-sm  text-gray-200 ml-2  mt-4 ">
-                  {" "}
-                  ORIGINAL
-                </p>
-              </div>
-              <div className="flex flex-col top-3 w-1/2 ">
-                <p className=" flex  text-4xl text-black ml-10 mb-4 font-normal ">
-                  {film?.title}
-                </p>
-                <Rating
-                  className="ml-10 "
-                  name="read-only"
-                  value={film?.imdbScore}
-                  readOnly
-                />
-                <p className="  text-white font-thin ml-10 ">
-                  {" "}
-                  {descriptionFilm}
-                </p>
-                <Button
-                  className=" w-1/5 m-8 p-5 text-gray-800  bg-gray-300 border-none rounded-md  hover:bg-gray-300  text-lg font-medium "
-                  onClick={filmTrailer}
-                >
-                  Play
-                  <PlayArrowIcon />
-                </Button>
-              </div>
-            </div>
-          </div>
-        </div>
+        <FilmExist
+          film={film}
+          descriptionFilm={descriptionFilm}
+          filmTrailer={filmTrailer}
+        />
       )}
     </div>
   );
