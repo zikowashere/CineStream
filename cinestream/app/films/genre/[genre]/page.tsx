@@ -56,10 +56,9 @@ const GenrePage = ({ params }: Props) => {
     <>
       <div className=" grid  place-items-center grid-rows-3  grid-cols-3 gap-1 text-white overflow-x-hidden ">
         {filmsByGenre?.map((film) => (
-          <div className="m-1 bg-transparent cursor-pointer ">
+          <div key={film.title} className="m-1 bg-transparent cursor-pointer ">
             <Card
               className="border-none  h-96"
-              key={film.title}
               onClick={() => handleClickFilm(film.title)}
             >
               <img
