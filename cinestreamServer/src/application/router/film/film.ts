@@ -1,6 +1,6 @@
 import express, { Request, Response } from "express";
-import FilmController from "../controller/filmController";
-import FilmSqlRepository from "../repository/filmSqlRepository";
+import FilmController from "../../controller/film/filmController";
+import FilmSqlRepository from "../../repository/film/filmSqlRepository";
 
 const routerFilm = express.Router();
 const filmSqlRepository = new FilmSqlRepository();

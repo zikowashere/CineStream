@@ -1,13 +1,11 @@
 "use client";
-import { useFetchFilmsByGenre } from "@/app/hooks/useFetchFilmsByGenre";
-import { useFetchFilmsByLanguage } from "@/app/hooks/useFetchFilmsByLanguage";
-import { usePagination } from "@/app/hooks/usePagination";
+import { useFetchFilmsByGenre } from "@/app/hooks/films/useFetchFilmsByGenre";
+import { usePagination } from "@/app/hooks/films/usePagination";
 import { film } from "@/app/type/film";
 import { Card } from "@/registry/new-york/ui/card";
-import { Pagination, Rating } from "@mui/material";
+import { Pagination } from "@mui/material";
 import { useRouter } from "next/navigation";
-import React, { ChangeEvent, useEffect, useState } from "react";
-import MoviesDisplay from "../../components/moviesDisplay";
+import { ChangeEvent, useEffect, useState } from "react";
 
 interface Props {
   params: { genre: string };

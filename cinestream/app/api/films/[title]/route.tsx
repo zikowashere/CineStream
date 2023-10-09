@@ -7,7 +7,7 @@ export async function GET(
 ) {
   try {
     const film = await axios.get(
-      process.env.SERVER_URL + `/api/films/${params.title}`
+      process.env.NEXT_PUBLIC_SERVER_URL + `/api/films/${params.title}`
     );
     if (film.status === 200)
       return NextResponse.json(film.data, {

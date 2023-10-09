@@ -13,12 +13,18 @@ datasource db {
 model film {
   id          Int    @id @default(autoincrement())
   title       String
-  genre       String
-  premiere    String
-  runtime     Int
-  imdbScore   Float
+  genre       String @default("")
+  premiere    String @default("")
+  runtime     Int  @default(0)
+  imdbScore   Float @default(0)
   posterCard  String @default("")
   poster      String @default("")
-  description String @default("") @db.LongText
-  langage     String
+  language     String @default("")
+}
+
+model user {
+  id        Int    @id @default(autoincrement())
+  firstName String
+  lastName  String
+  password  String
 }

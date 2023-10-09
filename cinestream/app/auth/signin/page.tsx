@@ -2,7 +2,7 @@ import { Metadata } from "next";
 
 import { cn } from "@/lib/utils";
 
-import { DemoCreateAccount } from "./components/create-account";
+import { SignIn } from "../components/sign-in";
 
 export const metadata: Metadata = {
   title: "Login",
@@ -29,7 +29,15 @@ export default function CardsPage() {
     <div className=" flex m-20 relative items-center justify-center">
       <div className="col-span-4 md:col-span-2 lg:col-span-2  ">
         <DemoContainer>
-          <DemoCreateAccount />
+          <div className="flex w-1/2">
+            <SignIn
+              titleSection={"log In to your account"}
+              cardDescription={
+                "Welcome back! Log in to your account and continue your journey with CineStream. "
+              }
+              buttonDescription={"Login"}
+            />
+          </div>
         </DemoContainer>
       </div>
     </div>

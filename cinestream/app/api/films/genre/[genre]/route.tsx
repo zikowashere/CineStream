@@ -6,7 +6,7 @@ export async function GET(
   { params }: { params: { genre: string } }
 ) {
   const films = await axios.get(
-    process.env.SERVER_URL + `/api/films/genre/${params.genre}`
+    process.env.NEXT_PUBLIC_SERVER_URL + `/api/films/genre/${params.genre}`
   );
   return NextResponse.json(films.data, {
     headers: { "Cache-Control": "max-age=360" },

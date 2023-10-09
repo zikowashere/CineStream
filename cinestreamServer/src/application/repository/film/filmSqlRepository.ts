@@ -1,7 +1,7 @@
 import axios from "axios";
-import { film } from "../../films/film/film";
-import { filmRepository } from "../../films/ports/filmRepository";
-import prisma from "../prisma/client";
+import { film } from "../../../films/film/film";
+import { filmRepository } from "../../../films/ports/filmRepository";
+import prisma from "../../prisma/film/client";
 
 export default class FilmSqlRepository implements filmRepository {
   async addInformation() {
@@ -14,16 +14,26 @@ export default class FilmSqlRepository implements filmRepository {
             `query=${film.title}&api_key=` +
             process.env.TMDB_CLIENT
         );
-        console.log("information", information.data.results[0]);
         const res = information.data.results[0];
 
-        await prisma.film.update({
-          where: { id: film.id },
-          data: {
-            poster: res.poster_path,
-            posterCard: res.backdrop_path,
-          },
-        });
+        if (
+          res.poster_path !== null ||
+          res.backdrop_path !== null ||
+          res.poster_path !== undefined ||
+          res.backdrop_path !== undefined ||
+          res !== null ||
+          res !== undefined
+        ) {
+          await prisma.film.update({
+            where: { id: film.id },
+            data: {
+              poster: res.poster_path,
+              posterCard: res.backdrop_path,
+            },
+          });
+        } else {
+          await prisma.film.delete({ where: { id: film.id } });
+        }
       }
     } catch (error) {
       console.log("error", error);
@@ -59,7 +69,7 @@ export default class FilmSqlRepository implements filmRepository {
   async getFilmsByLanguage(language: string) {
     try {
       const films = await prisma.film.findMany({
-        where: { langage: language },
+        where: { language: language },
       });
       if (films) return films;
       else return null;

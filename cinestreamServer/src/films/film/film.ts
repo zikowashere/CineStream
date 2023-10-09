@@ -7,6 +7,5 @@ export interface film {
   imdbScore: number;
   posterCard: string;
   poster: string;
-  description: string;
-  langage: string;
+  language: string;
 }

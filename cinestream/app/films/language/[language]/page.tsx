@@ -1,6 +1,6 @@
 "use client";
-import { useFetchFilmsByLanguage } from "@/app/hooks/useFetchFilmsByLanguage";
-import { usePagination } from "@/app/hooks/usePagination";
+import { useFetchFilmsByLanguage } from "@/app/hooks/films/useFetchFilmsByLanguage";
+import { usePagination } from "@/app/hooks/films/usePagination";
 import { film } from "@/app/type/film";
 import { Card } from "@/registry/new-york/ui/card";
 import { Pagination, Rating } from "@mui/material";
