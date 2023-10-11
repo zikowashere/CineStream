@@ -1,5 +1,5 @@
 import { useCallback, useMemo, useState } from "react";
-import { film } from "../type/film";
+import { film } from "../../type/film";
 
 interface Pagination {
   indexPage: number;

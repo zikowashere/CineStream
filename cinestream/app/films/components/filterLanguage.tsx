@@ -1,9 +1,8 @@
 "use client";
 
-import React, { useState } from "react";
 import { Check, ChevronsUpDown } from "lucide-react";
+import { useState } from "react";
 
-import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
 import {
   Command,
@@ -17,7 +16,7 @@ import {
   PopoverContent,
   PopoverTrigger,
 } from "@/components/ui/popover";
-import { useFetchFilmsByLanguage } from "@/app/hooks/useFetchFilmsByLanguage";
+import { cn } from "@/lib/utils";
 import { useRouter } from "next/navigation";
 
 const language = [

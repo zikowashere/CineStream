@@ -1,14 +1,14 @@
 "use client";
 
-import { useFetchFilmByTitle } from "@/app/hooks/useFetchFilmByTitle";
-import { useGetInformationFilm } from "@/app/hooks/useGetInformationsFilm";
+import { useFetchFilmByTitle } from "@/app/hooks/films/useFetchFilmByTitle";
+import { useGetInformationFilm } from "@/app/hooks/films/useGetInformationsFilm";
 import { film } from "@/app/type/film";
 import { Button } from "@/registry/new-york/ui/button";
 import PlayArrowIcon from "@mui/icons-material/PlayArrow";
 import { Popover, Rating } from "@mui/material";
 import { useEffect, useState } from "react";
 import YouTube from "react-youtube";
-import ExceptionFilm from "@/app/components/exceptions/exception";
+import ExceptionFilm from "@/app/components/exceptions/exceptionfilm";
 // @ts-ignore
 import movieTrailer from "movie-trailer";
 import FilmExist from "../components/filmExist";
@@ -41,7 +41,6 @@ const TitlePage = ({ params }: Props) => {
 
     if (params.title) {
       filmByTitle = await fetchFilmByTitle();
-      console.log("film", filmByTitle);
     }
     if (filmByTitle !== undefined) {
       setFilm(filmByTitle);

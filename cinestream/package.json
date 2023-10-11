@@ -25,6 +25,7 @@
     "clsx": "^2.0.0",
     "cmdk": "^0.2.0",
     "date-fns": "^2.30.0",
+    "jsonwebtoken": "^9.0.2",
     "lucide-react": "^0.279.0",
     "movie-trailer": "^3.1.0",
     "next": "latest",
@@ -40,6 +41,7 @@
   },
   "devDependencies": {
     "@types/config": "^3.3.1",
+    "@types/jsonwebtoken": "^9.0.3",
     "@types/node": "latest",
     "@types/react": "latest",
     "@types/react-dom": "latest",

@@ -1,6 +1,6 @@
 "use client";
 
-import { useGetInformationFilm } from "@/app/hooks/useGetInformationsFilm";
+import { useGetInformationFilm } from "@/app/hooks/films/useGetInformationsFilm";
 import { film } from "@/app/type/film";
 import { Rating } from "@mui/material";
 import { useEffect, useState } from "react";

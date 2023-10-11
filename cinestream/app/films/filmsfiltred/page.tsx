@@ -4,7 +4,7 @@ import { Input } from "@/registry/new-york/ui/input";
 import { CircularProgress } from "@mui/material";
 import { useRouter } from "next/navigation";
 import { ChangeEvent, Suspense, useEffect, useState } from "react";
-import { useFetchFilms } from "../../hooks/useFetchFilms";
+import { useFetchFilms } from "../../hooks/films/useFetchFilms";
 import { film } from "../../type/film";
 import FilterGenre from "../components/filterGenre";
 import FilterLanguage from "../components/filterLanguage";

@@ -1,4 +1,4 @@
-import ExceptionFilm from "@/app/components/exceptions/exception";
+import ExceptionFilm from "@/app/components/exceptions/exceptionfilm";
 import { film } from "@/app/type/film";
 import { Button } from "@/registry/new-york/ui/button";
 import { Rating } from "@mui/material";

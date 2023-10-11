@@ -1,7 +1,7 @@
 "use client";
 import { CircularProgress } from "@mui/material";
 import { Suspense, useEffect, useState } from "react";
-import { useFetchFilms } from "../hooks/useFetchFilms";
+import { useFetchFilms } from "../hooks/films/useFetchFilms";
 import { film } from "../type/film";
 import MoviesDisplay from "./components/moviesDisplay";
 import Poster from "./components/poster";

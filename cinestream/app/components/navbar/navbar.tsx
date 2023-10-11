@@ -4,7 +4,7 @@ import logo from "@/public/logo_transparent.png";
 import Image from "next/image";
 import SignInAction from "../signinaction/signinaction";
 import { useSession } from "next-auth/react";
-import { SignOut } from "@/app/signout/signout";
+import { SignOut } from "@/app/auth/signout/signout";
 import { Button } from "@/registry/new-york/ui/button";
 import { useRouter } from "next/navigation";
 
@@ -50,7 +50,7 @@ const Navbar = () => {
           </div>
         </div>
       ) : (
-        <SignInAction name="Login" link="/signin" />
+        <SignInAction name="Login" link="/auth/signin" />
       )}
     </div>
   );
