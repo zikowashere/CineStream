@@ -1,9 +1,9 @@
-import axios from "axios";
-import { NextAuthOptions, RequestInternal } from "next-auth";
+import axios, { AxiosError } from "axios";
+import jwt from "jsonwebtoken";
+import { NextAuthOptions } from "next-auth";
 import Credentials from "next-auth/providers/credentials";
 import GoogleProvider from "next-auth/providers/google";
-import { POST } from "../api/users/signup/route";
-import { user } from "../type/user";
+import { decode } from "../type/decode";
 
 export const optionAuth: NextAuthOptions = {
   providers: [
@@ -12,35 +12,51 @@ export const optionAuth: NextAuthOptions = {
       clientSecret: process.env.GOOGLE_CLIENT_SECRET!,
     }),
     Credentials({
-      name: "Signup",
-      credentials: {
-        firstName: { label: "firstName", type: "text" },
-        lastName: { label: "lastName", type: "text" },
-        password: { label: "password", type: "password" },
-      },
-      authorize: async (credentials) => {
+      async authorize(credentials, req) {
         try {
-          const userResponse = await fetch(
-            process.env.NEXT_PUBLIC_SERVER_URL + "/api/users/signup",
+          const userResponse = await axios.post(
+            process.env.NEXT_PUBLIC_SERVER_URL + "/api/users/signin",
+            credentials,
             {
-              method: "POST",
-              body: JSON.stringify(credentials),
-              headers: { "Cache-Control": "max-age=360" },
+              headers: {
+                "Cache-Control": "max-age=360",
+                "Content-Type": "application/json",
+              },
             }
           );
+          const token = userResponse.data.token;
+          const decoded = jwt.decode(token) as decode;
+          const user = decoded?.user;
 
-          const token = userResponse.json();
-          if (userResponse.status === 200) {
-            return token;
-          } else {
-            return null;
+          if (user) {
+            const shapedUser = {
+              name: `${user.firstName} ${user.lastName}`,
+              email: null,
+              image: null,
+            };
+
+            return Promise.resolve({ ...shapedUser, token });
           }
         } catch (error) {
-          console.error("Error during authorization:", error);
-          return null;
+          if (error instanceof AxiosError) {
+            const axiosError = error as AxiosError;
+            return Promise.reject(axiosError.response?.data);
+          }
         }
       },
     }),
   ],
-  callbacks: {},
+  pages: {
+    signIn: "/auth/signin",
+  },
+
+  callbacks: {
+    async jwt({ token, user }) {
+      return { ...token, ...user };
+    },
+    session: async ({ session, token, user }) => {
+      session.user = token as any;
+      return Promise.resolve(session);
+    },
+  },
 };

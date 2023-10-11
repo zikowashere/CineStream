@@ -15,6 +15,7 @@ import {
 } from "@/registry/new-york/ui/card";
 import { Input } from "@/registry/new-york/ui/input";
 import { Label } from "@/registry/new-york/ui/label";
+import { AxiosError } from "axios";
 import { signIn } from "next-auth/react";
 import { useRouter } from "next/navigation";
 import { ChangeEvent, useEffect, useState } from "react";
@@ -55,7 +56,7 @@ export function SignUpAccount({
     });
 
     if (!result) {
-      console.error("Error to signIn");
+      throw new Error("Error to signIn");
     }
   };
 
@@ -64,7 +65,7 @@ export function SignUpAccount({
       const userSignIn = await (await signUpUser(user!)).json();
       if (userSignIn) router.push("/auth/signin");
     } catch (error) {
-      setError(error?.response.data.error);
+      if (error instanceof AxiosError) setError(error.response?.data.error);
     }
   };
 

@@ -36,7 +36,6 @@ export default class FilmSqlRepository implements filmRepository {
         }
       }
     } catch (error) {
-      console.log("error", error);
       throw new Error("films doesn't exists.");
     }
   }

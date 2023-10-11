@@ -27,10 +27,9 @@ routerUser.post("/signup", async (req: Request, res: Response) => {
 });
 routerUser.post("/signin", async (req: Request, res: Response) => {
   try {
-    const user = await userController.signIn(req.body);
-    if (user) {
-      const { firstName, lastName } = user;
-      return res.status(200).json({ user: { firstName, lastName } });
+    const token = await userController.signIn(req.body);
+    if (token) {
+      return res.status(200).json({ token });
     } else {
       throw new Error("please check your credentials");
     }

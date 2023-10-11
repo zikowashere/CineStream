@@ -41,7 +41,6 @@ const TitlePage = ({ params }: Props) => {
 
     if (params.title) {
       filmByTitle = await fetchFilmByTitle();
-      console.log("film", filmByTitle);
     }
     if (filmByTitle !== undefined) {
       setFilm(filmByTitle);

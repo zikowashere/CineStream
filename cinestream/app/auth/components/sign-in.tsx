@@ -16,6 +16,7 @@ import {
 } from "@/registry/new-york/ui/card";
 import { Input } from "@/registry/new-york/ui/input";
 import { Label } from "@/registry/new-york/ui/label";
+import { AxiosError } from "axios";
 import { signIn } from "next-auth/react";
 import { useRouter } from "next/navigation";
 import { ChangeEvent, useEffect, useState } from "react";
@@ -56,16 +57,29 @@ export function SignIn({
     });
 
     if (!result) {
-      console.error("Error to signIn");
+      throw new Error("Error to signIn");
     }
   };
 
   const handleSignIn = async () => {
     try {
-      const userSignIn = await (await signInUser(user!)).json();
-      if (userSignIn) router.push("/films");
+      const { firstName, lastName, password } = user!;
+
+      const signInResponse = await signIn("credentials", {
+        redirect: false,
+        firstName,
+        lastName,
+        password,
+        callbackUrl,
+      });
+
+      if (signInResponse?.error) {
+        setError("please check your credentials");
+      } else {
+        router.push(callbackUrl);
+      }
     } catch (error) {
-      setError(error?.response.data.error);
+      setError("An unexpected error occurred during signin.");
     }
   };
 

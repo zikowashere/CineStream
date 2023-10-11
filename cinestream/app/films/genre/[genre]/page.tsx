@@ -42,7 +42,7 @@ const GenrePage = ({ params }: Props) => {
         setFilmsByGenre(getPaginateFilms(films));
       }
     } catch (error) {
-      console.error("Error; cannot get films :", error);
+      throw new Error("Error; cannot get films :", error);
     }
   };
 
