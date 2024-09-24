@@ -124,6 +124,7 @@ export function SignIn({
             firstName
           </Label>
           <Input
+            className="text-white"
             id="firstName"
             type="text"
             placeholder="Enter your first Name"
@@ -135,6 +136,7 @@ export function SignIn({
             lastName
           </Label>
           <Input
+            className="text-white"
             id="lastName"
             type="text"
             placeholder="Enter your last Name"
@@ -146,6 +148,7 @@ export function SignIn({
             Password
           </Label>
           <Input
+            className="text-white"
             id="password"
             type="password"
             placeholder="Enter your password"
